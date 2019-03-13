@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "977487379115",
+    "firebase_url": "https://haoapp-9d27d.firebaseio.com",
+    "project_id": "haoapp-9d27d",
+    "storage_bucket": "haoapp-9d27d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977487379115:android:f4755b5e071041b8",
+        "android_client_info": {
+          "package_name": "login.georgie.com.haoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977487379115-o6obdbdrhbnpj6umon864rnrq475te2p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "login.georgie.com.haoapp",
+            "certificate_hash": "ce547fa0632205e9c71074f7358d883eb1471da2"
+          }
+        },
+        {
+          "client_id": "977487379115-cntlsn0asmd3h42k9rfkpna39cvgucdh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxqkworW4Jez2JE1qm7rcf1ZZaiNjMfEg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977487379115-cntlsn0asmd3h42k9rfkpna39cvgucdh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
