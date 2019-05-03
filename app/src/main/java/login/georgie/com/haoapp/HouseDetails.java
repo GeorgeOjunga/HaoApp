@@ -6,8 +6,11 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +23,8 @@ import com.squareup.picasso.Picasso;
 import java.util.Locale;
 
 import login.georgie.com.haoapp.Category.Category;
+import login.georgie.com.haoapp.Database.Database;
+import login.georgie.com.haoapp.Model.Order;
 
 public class HouseDetails extends AppCompatActivity {
 
@@ -28,11 +33,14 @@ public class HouseDetails extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton BtnCart;
     ElegantNumberButton NumberButton;
+    Button BuyNow;
 
     String CategoryID="";
 
     FirebaseDatabase database;
     DatabaseReference Houses;
+
+    Category currentCategory;
 
 
     @Override
@@ -47,6 +55,21 @@ public class HouseDetails extends AppCompatActivity {
         //init view
         NumberButton=(ElegantNumberButton)findViewById(R.id.number_button);
         BtnCart=(FloatingActionButton)findViewById(R.id.btnCart);
+        BuyNow =(Button)findViewById(R.id.buy_now);
+
+        BuyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Database(getBaseContext()).addToCart(new Order(
+                        CategoryID,
+                        currentCategory.getName(),
+                        NumberButton.getNumber(),
+                        currentCategory.getPrice(),
+                        currentCategory.getDiscount()
+                ));
+                Toast.makeText(HouseDetails.this, "Added to Cart ", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         House_Description=(TextView)findViewById(R.id.house_description);
         House_name=(TextView)findViewById(R.id.house_Name);
@@ -75,17 +98,17 @@ public class HouseDetails extends AppCompatActivity {
         Houses.child(categoryID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Category category =dataSnapshot.getValue(Category.class);
+                currentCategory =dataSnapshot.getValue(Category.class);
 
                 //set image
-                Picasso.get().load(category.getImage())
+                Picasso.get().load(currentCategory.getImage())
                         .into(House_image);
 
-                collapsingToolbarLayout.setTitle(category.getName());
+                collapsingToolbarLayout.setTitle(currentCategory.getName());
 
-                House_price.setText(category.getPrice());
-                House_Description.setText(category.getDescription());
-                House_name.setText(category.getName());
+                House_price.setText(currentCategory.getPrice());
+                House_Description.setText(currentCategory.getDescription());
+                House_name.setText(currentCategory.getName());
             }
 
             @Override

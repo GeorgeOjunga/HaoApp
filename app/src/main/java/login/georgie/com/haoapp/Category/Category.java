@@ -5,6 +5,7 @@ public class Category {
     private String Name;
     private String Description;
     private String Price;
+    private String Discount;
 
     public Category() {
     }
@@ -25,6 +26,8 @@ public class Category {
         return Price;
     }
 
+    public String getDiscount(){ return Discount; }
+
     public void setImage(String image) {
 
         Image = image;
@@ -40,5 +43,9 @@ public class Category {
 
     public void setPrice(String price) {
         Price = price;
+    }
+
+    public void setDiscount(String discount) {
+        Discount = discount;
     }
 }
